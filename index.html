@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário com Local Storage</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<h3>Formulário</h3>
+<input type="text" id="nome" placeholder="Seu nome">
+<input type="text" id="telefone" placeholder="Seu telefone">
+<input type="text" id="email" placeholder="Seu e-mail"><br>
+<button id="bt-enviar">Enviar</button>
+
+<script>
+document.getElementById("bt-enviar").addEventListener("click", function() {
+  var nome = document.getElementById("nome").value;
+  var telefone = document.getElementById("telefone").value;
+  var email = document.getElementById("email").value;
+
+  var dados = {
+    nome: nome,
+    telefone: telefone,
+    email: email
+  };
+
+  localStorage.setItem("formulario", JSON.stringify(dados));
+});
+
+var dadosSalvos = localStorage.getItem("formulario");
+if (dadosSalvos) {
+  var dados = JSON.parse(dadosSalvos);
+  document.getElementById("nome").value = dados.nome;
+  document.getElementById("telefone").value = dados.telefone;
+  document.getElementById("email").value = dados.email;
+}
+</script>
+
+</body>
+</html>
+
+
